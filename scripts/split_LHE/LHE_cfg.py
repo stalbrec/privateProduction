@@ -2,7 +2,7 @@
 # using: 
 # Revision: 1.19 
 # Source: /local/reps/CMSSW/CMSSW/Configuration/Applications/python/ConfigBuilder.py,v 
-# with command line options: Configuration/GenProduction/python/ThirteenTeV/aQGC_WPhadWPhadJJ_EWK_LO_NPle1_13TeV-madgraph_cff.py --fileout file:WPWP_LHE.root --mc --eventcontent LHE --datatier LHE --conditions MCRUN2_71_V1::All --step LHE --python_filename LHE_cfg.py --no_exec --customise Configuration/DataProcessing/Utils.addMonitoring -n 500
+# with command line options: Configuration/GenProduction/python/ThirteenTeV/aQGC_WPhadWPhadJJ_EWK_LO_NPle1_13TeV-madgraph_cff.py --fileout file:WPWP_LHE.root --mc --eventcontent LHE --datatier LHE --conditions MCRUN2_71_V1::All --step LHE --python_filename LHE_cfg.py --no_exec --customise Configuration/DataProcessing/Utils.addMonitoring -n 5000
 import FWCore.ParameterSet.Config as cms
 
 process = cms.Process('LHE')
@@ -19,7 +19,7 @@ process.load('Configuration.StandardSequences.EndOfProcess_cff')
 process.load('Configuration.StandardSequences.FrontierConditions_GlobalTag_cff')
 
 process.maxEvents = cms.untracked.PSet(
-    input = cms.untracked.int32(500)
+    input = cms.untracked.int32(5000)
 )
 
 # Input source
@@ -32,7 +32,7 @@ process.options = cms.untracked.PSet(
 # Production Info
 process.configurationMetadata = cms.untracked.PSet(
     version = cms.untracked.string('$Revision: 1.19 $'),
-    annotation = cms.untracked.string('Configuration/GenProduction/python/ThirteenTeV/aQGC_WPhadWPhadJJ_EWK_LO_NPle1_13TeV-madgraph_cff.py nevts:500'),
+    annotation = cms.untracked.string('Configuration/GenProduction/python/ThirteenTeV/aQGC_WPhadWPhadJJ_EWK_LO_NPle1_13TeV-madgraph_cff.py nevts:5000'),
     name = cms.untracked.string('Applications')
 )
 
@@ -57,14 +57,15 @@ from Configuration.AlCa.GlobalTag import GlobalTag
 process.GlobalTag = GlobalTag(process.GlobalTag, 'MCRUN2_71_V1::All', '')
 
 process.externalLHEProducer = cms.EDProducer("ExternalLHEProducer",
-    nEvents = cms.untracked.uint32(500),
+    nEvents = cms.untracked.uint32(5000),
     outputFile = cms.string('cmsgrid_final.lhe'),
     scriptName = cms.FileInPath('GeneratorInterface/LHEInterface/data/run_generic_tarball_cvmfs.sh'),
     numberOfParameters = cms.uint32(1),
-    args = cms.vstring('/nfs/dust/cms/user/albrechs/production/genproductions/bin/MadGraph5_aMCatNLO/aQGC_WPhadWPhadJJ_EWK_LO_NPle1_slc6_amd64_gcc481_CMSSW_7_1_30_tarball.tar.xz')
+    args = cms.vstring('/nfs/dust/cms/user/albrechs/production/ntuples/split_LHE/MYPROC/MYINT/aQGC_MYPROCLONGJJ_EWK_LO_NPle1_slc6_amd64_gcc481_CMSSW_7_1_30_tarball.tar.xz')
+    #args = cms.vstring('/nfs/dust/cms/user/albrechs/production/genproductions/bin/MadGraph5_aMCatNLO/aQGC_WPhadWPhadJJ_EWK_LO_NPle1_slc6_amd64_gcc481_CMSSW_7_1_30_tarball.tar.xz')
 )
 
-process.RandomNumberGeneratorService.externalLHEProducer.initialSeed=MYINT*11+10
+process.RandomNumberGeneratorService.externalLHEProducer.initialSeed=MYINT
 # process.RandomNumberGeneratorService = cms.Service("RandomNumberGeneratorService",
 #     externalLHEProducer = cms.PSet(
 #         initialSeed = cms.untracked.uint32(MYINT),

@@ -12,7 +12,7 @@ export SCRAM_ARCH=slc_amd64_gcc530
 # fi
 eval `scram runtime -sh`
 
-cp aQGCMYPROC_ntuplewriter.py aQGCMYPROC_ntuplewriter_$1.py 
-sed -i "s|MYINT|$1|g" aQGCMYPROC_ntuplewriter_$1.py 
-sed -i "s|MYPROC|$2|g" aQGCMYPROC_ntuplewriter_$1.py 
-cmsRun aQGCWPWP_ntuplewriter_$1.py 
+cp aQGCMYPROC_ntuplewriter.py aQGC${2}_ntuplewriter_$1.py 
+sed -i "s|MYINT|$1|g" aQGC${2}_ntuplewriter_$1.py 
+sed -i "s|MYPROC|$2|g" aQGC${2}_ntuplewriter_$1.py 
+cmsRun aQGC${2}_ntuplewriter_$1.py 

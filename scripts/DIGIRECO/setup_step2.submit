@@ -1,0 +1,21 @@
+#HTC Submission File for SFrameBatch
+fileindex         = $(Process)
+
+requirements      =  OpSysAndVer == "SL6"
+universe          = vanilla
+# #Running in local mode with 8 cpu slots
+# universe          =  local
+# request_cpus      =  8 
+notification      = Error
+notify_user       = steffen.albrecht@desy.de
+initialdir        = /nfs/dust/cms/user/albrechs/production/ntuples/DIGIRECO/$(channel)/
+output            = DIGIRECO_$(fileindex)_2.o$(ClusterId).$(Process)
+error             = DIGIRECO_$(fileindex)_2.e$(ClusterId).$(Process)
+log               = DIGIRECO_2.$(Cluster).log
+#Requesting CPU and DISK Memory - default +RequestRuntime of 3h stays unaltered
++RequestRuntime   = 86400
+RequestMemory     = 10G
+RequestDisk       = 10G
+getenv            = True
+executable        = ../DIGI_RECO_PROC_step2.sh
+arguments         = "$(fileindex) $(channel)"

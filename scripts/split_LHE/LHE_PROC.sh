@@ -16,6 +16,7 @@ cd $WORKDIR/$1
 cp ../LHE_cfg.py LHE_cfg_$2_$1.py
 
 sed -i "s|MYINT|$1|g" LHE_cfg_$2_$1.py
+sed -i "s|MYPROCLONG|$3|g" LHE_cfg_$2_$1.py
 sed -i "s|MYPROC|$2|g" LHE_cfg_$2_$1.py
 
 cmsRun LHE_cfg_$2_$1.py

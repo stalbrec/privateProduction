@@ -3,7 +3,7 @@ import os,subprocess
 from numpy import linspace,diff
 from numpy.random import randint,seed
 class GENSIM:
-    __cfg_py = '/afs/desy.de/user/a/albrechs/xxl/af-cms/aQGC/cards/modelComparison/MG_GENSIM_cfg.py'   
+    __cfg_py = '/afs/desy.de/user/a/albrechs/xxl/af-cms/aQGC/cards/modelComparison/production/MG_GENSIM_cfg.py'   
     __gridpack_locations =['/nfs/dust/cms/user/albrechs/aQGCModelComparison/gridpacks','/nfs/dust/cms/user/albrechs/aQGCModelComparison/genproductions/bin/MadGraph5_aMCatNLO']
 
     def __init__(self,name,workdir,**kwargs):
